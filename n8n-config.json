@@ -1,0 +1,38 @@
+{
+  "n8n": {
+    "url": "https://n8n.mtdmcompany.com",
+    "api": {
+      "base_url": "https://n8n.mtdmcompany.com/api/v1",
+      "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYjQ4MzQ4Yi03YmU0LTQ2ZTAtOGY5Ni1lODkyMWFiZTY3MDIiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiN2E4NGI1MmUtMjQzMy00MjhjLThmYTItMTI2ZmUzMmJhMmQyIiwiaWF0IjoxNzc2MTc2NzU4fQ.7HBmqlTlCeDELnfMe68Egf_M7uXnfMt_PaM81tMl9-I",
+      "docs": "https://n8n.mtdmcompany.com/api/v1/docs"
+    },
+    "mcp": {
+      "server_url": "https://n8n.mtdmcompany.com/mcp-server/http",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYjQ4MzQ4Yi03YmU0LTQ2ZTAtOGY5Ni1lODkyMWFiZTY3MDIiLCJpc3MiOiJuOG4iLCJhdWQiOiJtY3Atc2VydmVyLWFwaSIsImp0aSI6IjA5YTMyN2JmLTJjODMtNDYyZS1hOWFjLTY1NmU0ZjVkYWVkZiIsImlhdCI6MTc3NjE3Njc5OH0.sZYw2Jpe30nr4InsAttmnYAnOxjIsptGhuRpdIWYaXA",
+      "supergateway_cmd": "npx -y supergateway --streamableHttp https://n8n.mtdmcompany.com/mcp-server/http --header authorization:Bearer <TOKEN>"
+    }
+  },
+  "project": "Presales_chatwoot_n8n",
+  "description": "Automatización calificación de leads: WhatsApp + Chatwoot + n8n",
+  "tools": {
+    "n8n-mcp": {
+      "description": "MCP server para construir workflows n8n con IA (acceso a 1396 nodos, templates, schemas)",
+      "repo": "https://github.com/czlonkowski/n8n-mcp",
+      "usage": "npx -y n8n-mcp (configurado en .mcp.json)"
+    },
+    "n8n-skills": {
+      "description": "7 skills de IA para construir workflows n8n de producción",
+      "repo": "https://github.com/czlonkowski/n8n-skills",
+      "location": ".claude/skills/",
+      "skills": [
+        "n8n-mcp-tools-expert",
+        "n8n-workflow-patterns",
+        "n8n-expression-syntax",
+        "n8n-validation-expert",
+        "n8n-node-configuration",
+        "n8n-code-javascript",
+        "n8n-code-python"
+      ]
+    }
+  }
+}

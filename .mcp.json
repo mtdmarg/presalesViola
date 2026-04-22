@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "n8n-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "n8n-mcp"
+      ],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "https://n8n.mtdmcompany.com",
+        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYjQ4MzQ4Yi03YmU0LTQ2ZTAtOGY5Ni1lODkyMWFiZTY3MDIiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiN2E4NGI1MmUtMjQzMy00MjhjLThmYTItMTI2ZmUzMmJhMmQyIiwiaWF0IjoxNzc2MTc2NzU4fQ.7HBmqlTlCeDELnfme68Egf_M7uXnfMt_PaM81tMl9-I"
+      }
+    },
+    "n8n-native-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "supergateway",
+        "--streamableHttp",
+        "https://n8n.mtdmcompany.com/mcp-server/http",
+        "--header",
+        "authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYjQ4MzQ4Yi03YmU0LTQ2ZTAtOGY5Ni1lODkyMWFiZTY3MDIiLCJpc3MiOiJuOG4iLCJhdWQiOiJtY3Atc2VydmVyLWFwaSIsImp0aSI6IjA5YTMyN2JmLTJjODMtNDYyZS1hOWFjLTY1NmU0ZjVkYWVkZiIsImlhdCI6MTc3NjE3Njc5OH0.sZYw2Jpe30nr4InsAttmnYAnOxjIsptGhuRpdIWYaXA"
+      ]
+    }
+  }
+}

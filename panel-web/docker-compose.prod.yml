@@ -1,0 +1,56 @@
+services:
+  # ── App Next.js ───────────────────────────────────────────────────────────────
+  # Usa imagen node genérica. El código vive en /datos/violaPresales/app (volumen).
+  # Para actualizar: deploy.sh hace el build en el VPS y reinicia el contenedor.
+  # La base de datos es externa — no hay servicio postgres aquí.
+  web:
+    image: node:20-alpine
+    container_name: viola-presales-web
+    restart: unless-stopped
+    working_dir: /app
+    command: node server.js
+    volumes:
+      - /datos/violaPresales/app:/app:ro
+      - viola-nextjs-cache:/app/.next/cache
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+      # Base de datos externa (Baserow/PostgreSQL)
+      DATABASE_URL: ${DATABASE_URL}
+      # NextAuth
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      # Chatwoot
+      CHATWOOT_BASE_URL: ${CHATWOOT_BASE_URL}
+      CHATWOOT_API_TOKEN: ${CHATWOOT_API_TOKEN}
+      # Encriptación de access_tokens en DB
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+    labels:
+      - traefik.enable=true
+
+      # Router HTTPS
+      - traefik.http.routers.viola-presales.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.viola-presales.entrypoints=websecure
+      - traefik.http.routers.viola-presales.tls=true
+      - traefik.http.routers.viola-presales.tls.certresolver=lehttp
+
+      # Pasar HTTPS correctamente al backend
+      - traefik.http.middlewares.viola-presales-hdr.headers.customrequestheaders.X-Forwarded-Proto=https
+      - traefik.http.middlewares.viola-presales-hdr.headers.customrequestheaders.X-Forwarded-Ssl=on
+      - traefik.http.routers.viola-presales.middlewares=viola-presales-hdr
+
+      # Puerto interno de Next.js
+      - traefik.http.services.viola-presales.loadbalancer.server.port=3000
+
+      # Red de Traefik
+      - traefik.docker.network=edge
+
+    networks: [edge]
+
+volumes:
+  viola-nextjs-cache:
+
+networks:
+  edge:
+    external: true

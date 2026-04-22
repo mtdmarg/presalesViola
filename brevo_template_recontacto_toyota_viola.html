@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recontacto Urgente - Toyota Viola</title>
+</head>
+
+<body style="margin:0;padding:0;background-color:#F2F2F2;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F2F2F2;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+          <!-- ── HEADER ── -->
+          <tr>
+            <td style="background-color:#1A1A1A;border-radius:8px 8px 0 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="6" style="background-color:#EB0A1E;border-radius:8px 0 0 0;">&nbsp;</td>
+                  <td style="padding:22px 28px;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td> <img src="https://www.toyotaviola.com.ar/img/logos/viola%20logo.svg" alt="Toyota Viola"
+                            width="150" style="display:block;height:auto;filter:brightness(0) invert(1);" /> </td>
+                        <td align="right" style="vertical-align:middle;"> <span
+                            style="display:inline-block;background-color:#EB0A1E;color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:4px;">
+                            &#9888; Recontacto Urgente </span> </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr> <!-- ── CUERPO ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:28px 34px 8px 34px;">
+              <p style="margin:0 0 6px 0;font-size:20px;font-weight:700;color:#1A1A1A;">Un lead calificado aún no fue
+                contactado</p>
+              <p style="margin:0;font-size:14px;color:#666666;line-height:1.6;"> El cliente completó el proceso de
+                calificación pero todavía no recibió contacto de un asesor. </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#FFFFFF;padding:0 34px;">
+              <div style="height:3px;background-color:#EB0A1E;border-radius:2px;"></div>
+            </td>
+          </tr> <!-- ── DATOS ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:22px 34px 8px 34px;">
+              <p
+                style="margin:0 0 14px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">
+                Datos del Cliente</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="40%"
+                    style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;">
+                    Nombre</td>
+                  <td
+                    style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;font-weight:600;">
+                    {{$('ObtenerLead').item.json.nombre }}</td>
+                </tr>
+                <tr>
+                  <td
+                    style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;">
+                    Teléfono</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;"> <a
+                      href="https://wa.me/{{ $('ObtenerLead').item.json.telefono }}"
+                      style="color:#EB0A1E;text-decoration:none;font-weight:600;"> {{
+                      $('ObtenerLead').item.json.telefono }} </a> </td>
+                </tr>
+                <tr>
+                  <td
+                    style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;">
+                    Email</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;"> <a
+                      href="mailto:{{ $('ObtenerLead').item.json.email }}"
+                      style="color:#EB0A1E;text-decoration:none;">{{ $('ObtenerLead').item.json.email }}</a> </td>
+                </tr>
+                <tr>
+                  <td
+                    style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;">
+                    Modelo</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{
+                    $('ObtenerLead').item.json.modelo_interes }}</td>
+                </tr>
+                <tr>
+                  <td
+                    style="padding:9px 12px 9px 0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;">
+                    Operación</td>
+                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{ $('ObtenerLead').item.json.tipoventa }}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr> <!-- ── RESUMEN ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:22px 34px 32px 34px;">
+              <p
+                style="margin:0 0 12px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">
+                Resumen</p>
+              <div
+                style="background-color:#FFF5F5;border-left:4px solid #EB0A1E;border-radius:0 6px 6px 0;padding:16px 18px;">
+                <p style="margin:0;font-size:13px;color:#444444;line-height:1.7;">{{
+                  $('ObtenerLead').item.json.resumencliente }}</p>
+              </div>
+            </td>
+          </tr> <!-- ── FOOTER ── -->
+          <tr>
+            <td style="background-color:#1A1A1A;border-radius:0 0 8px 8px;padding:22px 34px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 3px 0;color:#FFFFFF;font-size:13px;font-weight:700;">Toyota Viola</p>
+                    <p style="margin:0;color:#999999;font-size:12px;line-height:1.7;"> Av. Montes de Oca 680 · Av.
+                      Independencia 337<br /> Buenos Aires, Argentina </p>
+                  </td>
+                  <td align="right" style="vertical-align:top;">
+                    <p style="margin:0;color:#666666;font-size:11px;line-height:1.7;"> Concesionario Oficial
+                      Toyota<br /> <a href="https://www.toyotaviola.com.ar"
+                        style="color:#EB0A1E;text-decoration:none;">toyotaviola.com.ar</a> </p>
+                  </td>
+                </tr>
+                <!-- MTDM Logo -->
+                <tr>
+                  <td colspan="2" style="padding-top:18px;border-top:1px solid #2E2E2E;text-align:center;">
+                    <p style="margin:0 0 8px 0;color:#555555;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Powered by</p>
+                    <img src="https://mtdmcompany.com/wp-content/uploads/2025/11/MTDM-pitch2.jpg"
+                         alt="MTDM Company"
+                         width="100"
+                         style="display:inline-block;height:auto;border-radius:4px;opacity:0.85;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;text-align:center;">
+              <p style="margin:0;font-size:11px;color:#AAAAAA;"> Email generado automáticamente por el sistema de
+                calificación de leads. </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

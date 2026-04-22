@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuevo Lead Calificado - Toyota Viola</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F2F2F2;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+
+  <!-- Wrapper -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F2F2F2;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+
+        <!-- Container -->
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+
+          <!-- ── HEADER ── -->
+          <tr>
+            <td style="background-color:#1A1A1A;border-radius:8px 8px 0 0;padding:0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <!-- Barra roja izquierda -->
+                  <td width="6" style="background-color:#EB0A1E;border-radius:8px 0 0 0;">&nbsp;</td>
+                  <td style="padding:24px 28px;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td>
+                          <!-- Logo imagen -->
+                          <img src="https://www.toyotaviola.com.ar/img/logos/viola%20logo.svg"
+                               alt="Toyota Viola"
+                               width="160"
+                               style="display:block;max-width:160px;height:auto;filter:brightness(0) invert(1);" />
+                          <span style="display:block;margin-top:6px;color:#999999;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Concesionario Oficial</span>
+                        </td>
+                        <td align="right" style="vertical-align:middle;">
+                          <span style="display:inline-block;background-color:#EB0A1E;color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:4px;">Lead Calificado</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── INTRO ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:32px 34px 20px 34px;">
+              <p style="margin:0 0 6px 0;font-size:20px;font-weight:700;color:#1A1A1A;">Nuevo cliente listo para ser contactado</p>
+              <p style="margin:0;font-size:14px;color:#666666;line-height:1.6;">
+                Mica completó la calificación del siguiente lead. Todos los datos de contacto y preferencias están confirmados.
+              </p>
+            </td>
+          </tr>
+
+          <!-- ── SEPARADOR ROJO ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:0 34px;">
+              <div style="height:3px;background-color:#EB0A1E;border-radius:2px;"></div>
+            </td>
+          </tr>
+
+          <!-- ── DATOS DE CONTACTO ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:24px 34px 8px 34px;">
+              <p style="margin:0 0 14px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">Datos de Contacto</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                <tr>
+                  <td width="40%" style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Nombre</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;font-weight:600;">{{$('ObtenerLead').item.json.nombre }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Email</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">
+                    <a href="mailto:{{$('ObtenerLead').item.json.email }}" style="color:#EB0A1E;text-decoration:none;">{{$('ObtenerLead').item.json.email }}</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Teléfono</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">
+                    <a href="https://wa.me/{{$('ObtenerLead').item.json.telefono }}" style="color:#EB0A1E;text-decoration:none;">{{$('ObtenerLead').item.json.telefono }}</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Ciudad</td>
+                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.ciudad }}</td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── DATOS DEL VEHÍCULO ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:24px 34px 8px 34px;">
+              <p style="margin:0 0 14px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">Vehículo de Interés</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                <tr>
+                  <td width="40%" style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Modelo</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;font-weight:600;">{{$('ObtenerLead').item.json.modeloInteres }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Versión</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.modelo_version }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Tipo de operación</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.tipoventa }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Color preferido</td>
+                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.modelo_color }}</td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── DATOS COMERCIALES ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:24px 34px 8px 34px;">
+              <p style="margin:0 0 14px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">Información Comercial</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                <tr>
+                  <td width="40%" style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Auto para entregar</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.marca_modelo_usado }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Financiación</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{ $('ObtenerLead').item.json.financiacion }}</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:9px 12px 9px 0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Tiempo de entrega</td>
+                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{ $('ObtenerLead').item.json.tiempo_espera_entrega }}</td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── RESUMEN ── -->
+          <tr>
+            <td style="background-color:#FFFFFF;padding:24px 34px 32px 34px;">
+              <p style="margin:0 0 12px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">Resumen de la Conversación</p>
+              <div style="background-color:#F7F7F7;border-left:4px solid #EB0A1E;border-radius:0 6px 6px 0;padding:16px 18px;">
+                <p style="margin:0;font-size:13px;color:#444444;line-height:1.7;">{{ $('ObtenerLead').item.json.resumenLead }}</p>
+              </div>
+            </td>
+          </tr>
+
+          <!-- ── FOOTER ── -->
+          <tr>
+            <td style="background-color:#1A1A1A;border-radius:0 0 8px 8px;padding:24px 34px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="vertical-align:top;">
+                    <p style="margin:0 0 4px 0;color:#FFFFFF;font-size:13px;font-weight:700;">Toyota Viola</p>
+                    <p style="margin:0;color:#999999;font-size:12px;line-height:1.7;">
+                      Av. Montes de Oca 680 · Av. Independencia 337<br/>
+                      Buenos Aires, Argentina
+                    </p>
+                  </td>
+                  <td align="right" style="vertical-align:top;">
+                    <p style="margin:0;color:#666666;font-size:11px;line-height:1.7;">
+                      Concesionario Oficial Toyota<br/>
+                      <a href="https://www.toyotaviola.com.ar" style="color:#EB0A1E;text-decoration:none;">toyotaviola.com.ar</a>
+                    </p>
+                  </td>
+                </tr>
+                <!-- MTDM Logo -->
+                <tr>
+                  <td colspan="2" style="padding-top:18px;border-top:1px solid #2E2E2E;text-align:center;">
+                    <p style="margin:0 0 8px 0;color:#555555;font-size:10px;letter-spacing:1px;text-transform:uppercase;">Powered by</p>
+                    <img src="https://mtdmcompany.com/wp-content/uploads/2025/11/MTDM-pitch2.jpg"
+                         alt="MTDM Company"
+                         width="100"
+                         style="display:inline-block;height:auto;border-radius:4px;opacity:0.85;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── NOTA LEGAL ── -->
+          <tr>
+            <td style="padding:16px 0 0 0;text-align:center;">
+              <p style="margin:0;font-size:11px;color:#AAAAAA;">
+                Este correo fue generado automáticamente por el sistema de calificación de leads.<br/>
+                No responder a esta dirección.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Container -->
+
+      </td>
+    </tr>
+  </table>
+  <!-- /Wrapper -->
+
+</body>
+</html>
