@@ -3,7 +3,7 @@
     "url": "https://n8n.mtdmcompany.com",
     "api": {
       "base_url": "https://n8n.mtdmcompany.com/api/v1",
-      "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYjQ4MzQ4Yi03YmU0LTQ2ZTAtOGY5Ni1lODkyMWFiZTY3MDIiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiN2E4NGI1MmUtMjQzMy00MjhjLThmYTItMTI2ZmUzMmJhMmQyIiwiaWF0IjoxNzc2MTc2NzU4fQ.7HBmqlTlCeDELnfMe68Egf_M7uXnfMt_PaM81tMl9-I",
+      "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZWQ5MDgwYi02YWEyLTRhYWMtODE2My1kODYzMTVkMTIxYmUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiYWI5ZWU4ODEtYTdmNy00ZDYyLWI3ODItOTcyMTRkOTIwMDAzIiwiaWF0IjoxNzc3MDUzNTk5fQ.kpvfeVG-RVSW-SEUmsuKL58Ne4SWhOlobjkn5NXVTtw",
       "docs": "https://n8n.mtdmcompany.com/api/v1/docs"
     },
     "mcp": {

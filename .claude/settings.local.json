@@ -4,7 +4,11 @@
       "Bash(curl -s https://n8n.mtdmcompany.com/api/v1/workflows/DkeHhhVe_LcwmqivGLlkx -H 'X-N8N-API-KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYjQ4MzQ4Yi03YmU0LTQ2ZTAtOGY5Ni1lODkyMWFiZTY3MDIiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiN2E4NGI1MmUtMjQzMy00MjhjLThmYTItMTI2ZmUzMmJhMmQyIiwiaWF0IjoxNzc2MTc2NzU4fQ.7HBmqlTlCeDELnfme68Egf_M7uXnfMt_PaM81tMl9-I')",
       "Bash(python3 -m json.tool)",
       "Bash(python3 -c ':*)",
-      "mcp__n8n-mcp__n8n_update_partial_workflow"
+      "mcp__n8n-mcp__n8n_update_partial_workflow",
+      "Bash(python3 -c ' *)",
+      "mcp__n8n-mcp__n8n_list_workflows",
+      "mcp__n8n-mcp__n8n_update_full_workflow",
+      "mcp__n8n-mcp__n8n_delete_workflow"
     ]
   }
 }

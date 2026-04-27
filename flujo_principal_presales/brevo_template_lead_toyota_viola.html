@@ -103,22 +103,22 @@
 
                 <tr>
                   <td width="40%" style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Modelo</td>
-                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;font-weight:600;">{{$('ObtenerLead').item.json.modeloInteres }}</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;font-weight:600;">{{$('ActualizarLeadSql').item.json.modelo_interes }}</td>
                 </tr>
 
                 <tr>
                   <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Versión</td>
-                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.modelo_version }}</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ActualizarLeadSql').item.json.modelo_version }}</td>
                 </tr>
 
                 <tr>
                   <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Tipo de operación</td>
-                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.tipoventa }}</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ActualizarLeadSql').item.json.tipoventa }}</td>
                 </tr>
 
                 <tr>
                   <td style="padding:9px 12px 9px 0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Color preferido</td>
-                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.modelo_color }}</td>
+                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{$('ActualizarLeadSql').item.json.modelo_color }}</td>
                 </tr>
 
               </table>
@@ -133,17 +133,17 @@
 
                 <tr>
                   <td width="40%" style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Auto para entregar</td>
-                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ObtenerLead').item.json.marca_modelo_usado }}</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{$('ActualizarLeadSql').item.json.marca_modelo_usado }}</td>
                 </tr>
 
                 <tr>
                   <td style="padding:9px 12px 9px 0;border-bottom:1px solid #F0F0F0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Financiación</td>
-                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{ $('ObtenerLead').item.json.financiacion }}</td>
+                  <td style="padding:9px 0;border-bottom:1px solid #F0F0F0;font-size:14px;color:#1A1A1A;">{{ $('ActualizarLeadSql').item.json.financiacion }}</td>
                 </tr>
 
                 <tr>
                   <td style="padding:9px 12px 9px 0;font-size:12px;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Tiempo de entrega</td>
-                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{ $('ObtenerLead').item.json.tiempo_espera_entrega }}</td>
+                  <td style="padding:9px 0;font-size:14px;color:#1A1A1A;">{{ $('ActualizarLeadSql').item.json.tiempo_espero_entrega }}</td>
                 </tr>
 
               </table>
@@ -155,11 +155,10 @@
             <td style="background-color:#FFFFFF;padding:24px 34px 32px 34px;">
               <p style="margin:0 0 12px 0;font-size:12px;font-weight:700;color:#EB0A1E;letter-spacing:1.5px;text-transform:uppercase;">Resumen de la Conversación</p>
               <div style="background-color:#F7F7F7;border-left:4px solid #EB0A1E;border-radius:0 6px 6px 0;padding:16px 18px;">
-                <p style="margin:0;font-size:13px;color:#444444;line-height:1.7;">{{ $('ObtenerLead').item.json.resumenLead }}</p>
+                <p style="margin:0;font-size:13px;color:#444444;line-height:1.7;">{{ $('ActualizarLeadSql').item.json.resumencliente }}</p>
               </div>
             </td>
           </tr>
-
           <!-- ── FOOTER ── -->
           <tr>
             <td style="background-color:#1A1A1A;border-radius:0 0 8px 8px;padding:24px 34px;">

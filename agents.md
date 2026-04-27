@@ -134,4 +134,62 @@ Los tools de información de vehículos (InformacionCorolla, InformacionCorollaC
 
 ## Herramientas disponibles en el agente
 
-`InformacionPlanes`, `InformacionHilux`, `InformacionCorolla`, `InformacionCorollaCross`, `InformacionYaris`, `InformacionHiace`, `InformacionYarisCross`
+`InformacionPlanes`, `InformacionHilux`, `InformacionCorolla`, `InformacionCorollaCross`, `InformacionYaris`, `InformacionHiace`, `InformacionYarisCross`, `ModelosDisponibles`, `InformacionUsados`, `InformacionSW4`, `InformacionRAV4`
+
+---
+
+## Workflow de Re-engagement (Toyota-Viola-ReEngagement)
+
+**ID n8n:** `QKEzYxuP0xKPDwNW`
+
+**Propósito:** Contactar proactivamente leads que dejaron de responder durante la calificación. Máximo 2 intentos dentro de las primeras 24h. Tras 24h con nombre+email, enviar a Salesforce.
+
+### Flujo
+
+```
+Schedule Trigger (cada 30 min)
+  → BuscarLeadsPendientes (Postgres SELECT)
+  → EnviarASalesforce? (IF)
+      ├── [true: > 24h con nombre+email] → InvocarSalesforce → MarcarSalesforceEnviado
+      └── [false: < 24h, intentos < 2] → PrepararContextoReengagement
+                                           → GenerarMensajeReengagement (LLM Chain + GPT-4.1-mini)
+                                           → EnviarMensajeChatwoot (HTTP Request)
+                                           → ActualizarIntentos (Postgres SQL)
+```
+
+### SQL de selección (BuscarLeadsPendientes)
+
+```sql
+SELECT telefono, nombre, email, ciudad, tipoventa, modelo_interes, modelo_version,
+       financiacion, id_conversacion, id_cuenta,
+       COALESCE(intentos_recontacto, 0) as intentos_recontacto,
+       resumencliente, fecha_creacion, fecha_actualizacion
+FROM leads
+WHERE COALESCE(sfdc_enviado, false) = false
+  AND id_conversacion IS NOT NULL
+  AND (estado = 'calificando' OR estado IS NULL)
+  AND EXTRACT(HOUR FROM NOW() AT TIME ZONE 'America/Buenos_Aires') BETWEEN 9 AND 17
+  AND (
+    (COALESCE(intentos_recontacto, 0) < 2
+     AND fecha_actualizacion < NOW() - INTERVAL '2 hours'
+     AND fecha_creacion > NOW() - INTERVAL '24 hours')
+    OR
+    (fecha_creacion < NOW() - INTERVAL '24 hours'
+     AND nombre IS NOT NULL AND email IS NOT NULL)
+  )
+```
+
+### Columnas nuevas en tabla `leads`
+
+| Columna | Tipo | Default | Descripción |
+|---|---|---|---|
+| `intentos_recontacto` | integer | 0 | Cuántos mensajes proactivos se enviaron |
+| `sfdc_enviado` | boolean | false | Si el lead fue enviado a Salesforce |
+
+**Reset en flujo principal:** `ActualizarLead` en `Toyota-Viola-PreSales` resetea `intentos_recontacto = 0` cuando el cliente responde.
+
+### Archivos de prompt
+
+| Archivo | Uso |
+|---|---|
+| `prompt_mica_recontacto_reengagement_toyota_viola` | System message del LLM en el workflow de re-engagement |

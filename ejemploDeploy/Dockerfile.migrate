@@ -1,6 +1,0 @@
-# Imagen liviana solo para correr migraciones Prisma.
-# Se construye una vez y queda cacheada en el VPS.
-FROM node:20-alpine
-RUN npm install -g prisma@6.6.0
-WORKDIR /prisma
-ENTRYPOINT ["prisma", "migrate", "deploy", "--schema=/prisma/schema.prisma"]

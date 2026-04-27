@@ -29,7 +29,7 @@ export default function LeadsTable({ leads }: { leads: LeadSummary[] }) {
             <TableHead className="hidden sm:table-cell">#</TableHead>
             <TableHead>Nombre</TableHead>
             <TableHead>Teléfono</TableHead>
-            <TableHead className="hidden md:table-cell">Ciudad</TableHead>
+            <TableHead className="hidden md:table-cell">Email</TableHead>
             <TableHead className="hidden md:table-cell">Tipo venta</TableHead>
             <TableHead className="hidden lg:table-cell">Modelo</TableHead>
             <TableHead className="hidden lg:table-cell">Etapa</TableHead>
@@ -53,7 +53,7 @@ export default function LeadsTable({ leads }: { leads: LeadSummary[] }) {
                 {orDash(lead.telefono)}
               </TableCell>
               <TableCell className="hidden md:table-cell text-sm text-zinc-600">
-                {orDash(lead.ciudad)}
+                {orDash(lead.email)}
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 <TipoVentaBadge value={lead.tipoventa} />

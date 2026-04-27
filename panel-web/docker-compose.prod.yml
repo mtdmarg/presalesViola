@@ -10,8 +10,7 @@ services:
     working_dir: /app
     command: node server.js
     volumes:
-      - /datos/violaPresales/app:/app:ro
-      - viola-nextjs-cache:/app/.next/cache
+      - /datos/violaPresales/app:/app
     environment:
       NODE_ENV: production
       PORT: "3000"
@@ -47,9 +46,6 @@ services:
       - traefik.docker.network=edge
 
     networks: [edge]
-
-volumes:
-  viola-nextjs-cache:
 
 networks:
   edge:
