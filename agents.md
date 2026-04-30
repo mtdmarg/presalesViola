@@ -5,6 +5,7 @@
 | Archivo | Descripción |
 |---|---|
 | `prompt_mica_toyota_viola` | Prompt principal del AI Agent (systemMessage) |
+| `prompt_mica_toyota_viola_v2` | Versión optimizada del prompt principal: menos duplicación, tono más natural, cierre conversacional y charla abierta para opcionales |
 | `prompt_mica_recontacto_temprano_toyota_viola` | Prompt para cuando el cliente vuelve a escribir antes de que lo contacte el asesor |
 | `brevo_template_lead_toyota_viola.html` | Email HTML para nuevo lead calificado (Brevo) |
 | `brevo_template_recontacto_toyota_viola.html` | Email HTML para recontacto urgente (Brevo) |
@@ -51,30 +52,63 @@ El systemMessage usa bloques IIFE de n8n para inyectar el estado del lead dinám
 
 **Bloque SITUACIÓN ACTUAL**: genera instrucciones dinámicas según qué datos ya están en la DB. Lo que renderiza este bloque gobierna qué pregunta el agente en cada turno.
 
-**PRIMER MENSAJE**: si `"Ya obtenidos: ninguno aún"` → el agente DEBE usar exactamente el texto del bloque PRIMER MENSAJE (no improvisar saludo ni pedir nombre). Hay 3 ubicaciones que refuerzan esta regla en el prompt.
+**PRIMER MENSAJE**: el prompt calcula `PRIMER TURNO REAL`. Solo si renderiza `"PRIMER TURNO REAL: SÍ"` → el agente DEBE usar exactamente el texto del bloque PRIMER MENSAJE. Si renderiza `"PRIMER TURNO REAL: NO"`, debe responder el último mensaje del cliente y continuar el flujo, aunque todavía no haya nombre/canal/horario.
 
 ---
 
-## Lógica de calificación por tipo de operación
+## Lógica actual de calificación
 
-| Campo | CONVENCIONAL | PLAN | USADO |
-|---|---|---|---|
-| Nombre | ✅ | ✅ | ✅ |
-| Email | ✅ | ✅ | ✅ |
-| Ciudad | ✅ | ✅ | ✅ |
-| Modelo | ✅ | ✅ | ✅ |
-| Versión | ✅ (elegir) | ✅ (base + cambio de versión) | ❌ |
-| Auto usado | ✅ | ✅ | ❌ |
-| Financiación | ✅ (cuotas) | ✅ (modalidad del plan: 70/30, 100%) | ❌ |
-| Color | ✅ | ✅ | ❌ |
-| Tiempo de entrega | ✅ (fecha) | ✅ (en qué cuota) | ❌ |
+El flujo principal ahora califica con menos datos obligatorios. El objetivo es derivar rápido al asesor con una intención clara y una forma concreta de contacto, sin convertir la conversación en formulario.
 
-**USADO**: solo los 4 básicos, cierra inmediatamente.
+### Datos mínimos obligatorios para cerrar
+
+| Campo | CONVENCIONAL | PLAN |
+|---|---|---|
+| Nombre | ✅ | ✅ |
+| Modelo de interés | ✅ | ✅ |
+| Tipo de venta / vertical | ✅ | ✅ |
+| Canal preferido de contacto | ✅ | ✅ |
+| Horario de contacto | ✅ | ✅ |
+
+**Email y ciudad ya no son obligatorios** para cerrar el lead. Se guardan si el cliente los menciona espontáneamente. El email solo se pide si el cliente elige email como canal preferido.
+
+### Datos opcionales
+
+| Campo | CONVENCIONAL | PLAN |
+|---|---|---|
+| Email | Opcional | Opcional |
+| Ciudad | Opcional | Opcional |
+| Versión | Solo si la menciona o pregunta | Base del plan + posible cambio al adjudicarse |
+| Auto usado | Solo si lo menciona | Solo si lo menciona |
+| Financiación | Solo si lo menciona | Modalidad del plan si corresponde |
+| Color | Solo si lo menciona | Solo si lo menciona |
+| Tiempo de entrega | Solo si lo menciona | En planes no hay fecha fija; depende de sorteo/licitación |
 
 **PLAN — comportamientos especiales:**
 - Versión: explicar que el plan es sobre la versión base, pero puede pedir cambio de versión al adjudicarse.
 - Financiación: usar tool `InformacionPlanes` para ver modalidades del modelo. Si hay varias, preguntar cuál prefiere. Si hay una sola, informarla directamente.
-- Tiempo de entrega: preguntar en qué cuota le gustaría recibir el auto (no fecha fija, depende de sorteo/licitación).
+- Tiempo de entrega: no prometer fecha fija; depende de sorteo o licitación. Si el cliente lo menciona, guardar el dato como contexto para el asesor.
+
+### Correcciones y modelos no válidos
+
+- Si el cliente menciona un modelo no actual/no comercializado (ej: Etios), Mica debe explicarlo brevemente, ofrecer alternativas actuales y **no guardar ese modelo** como `modeloInteres`.
+- Si en un turno posterior el cliente corrige el modelo (ej: "perdón Yaris"), el JSON del agente debe devolver `modeloInteres: "Yaris"` para reemplazar el valor anterior en la base.
+- Las correcciones explícitas del cliente siempre pisan el dato previo: modelo, vertical, canal, horario o nombre.
+- Si venía como PLAN pero el cliente dice "prefiero pago contado", "con financiación" o similar, el agente debe devolver `tipoVenta: "CONVENCIONAL"`.
+- Si venía como CONVENCIONAL pero el cliente pide Toyota Plan/plan de ahorro, el agente debe devolver `tipoVenta: "PLAN"`.
+
+### Tono conversacional
+
+- Evitar patrones que hacen sonar al agente robótico: empezar todo con "Dale", usar "Dale —", repetir "por Toyota Plan" en cada pregunta, listar catálogos completos cuando el cliente no los pidió.
+- No usar micro-reacciones como arranque por defecto. Evitar repetir "Buenísimo", "Va", "Dale", "Ok", "Bien" al inicio de cada respuesta. La conversación debe poder avanzar directo con la pregunta.
+- En v2, el saludo inicial se simplifica a "Soy Mica de Toyota Viola" y una pregunta más natural, evitando "asistente" y el tono de formulario.
+- V2 debe evitar el modo interrogatorio: cuando el cliente elige vertical o modelo, Mica suma una frase breve con criterio comercial antes de la siguiente pregunta.
+- V2 usa castellano argentino: "comprar al contado", "financiar", "llamada o mail", "te queda cómodo", "qué modelo te gusta".
+- V2 devuelve `quiereHablarMas`: `true` solo cuando el cliente ya fue avisado de que lo contacta un vendedor y luego sigue hablando con una consulta o dato útil. Es `false` mientras se recolectan mínimos, en el primer cierre y ante cierres sociales tipo "gracias"/"ok".
+- Si el cliente elige un modelo válido, no listar versiones por defecto. Avanzar con el siguiente dato faltante.
+- Para modelos discontinuados, ofrecer pocas alternativas relevantes en vez de toda la gama.
+- El cierre debe ser concreto y humano; evitar frases marketineras como "nuestro objetivo es que muy pronto estés disfrutando tu próximo 0km".
+- En `prompt_mica_toyota_viola_v2`, cuando `requiereMasDatos=false`, Mica avisa que lo va a contactar un vendedor/asesor y ofrece seguir conversando por opcionales como versión, color, entrega, usado, financiación o dudas del modelo.
 
 ---
 
@@ -113,7 +147,7 @@ function extractJsonObjects(str) {
 
 ### 3. PRIMER MENSAJE ignorado
 **Causa:** El LLM ignoraba la regla de primer turno y preguntaba el nombre directamente.
-**Fix:** Regla reforzada en 3 lugares del prompt usando `"Ya obtenidos: ninguno aún"` como trigger condición unívoco.
+**Fix:** Regla reforzada en 3 lugares del prompt usando `PRIMER TURNO REAL: SÍ` como trigger explícito. No se usa `"Ya obtenidos: ninguno aún"` porque puede aparecer en conversaciones ya iniciadas cuando todavía faltan nombre/canal/horario.
 
 ---
 
